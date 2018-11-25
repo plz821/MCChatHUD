@@ -151,7 +151,7 @@ extension RecordViewController {
     
     private func configAVAudioSession() {
         let session = AVAudioSession.sharedInstance()
-        do { try session.setCategory(AVAudioSessionCategoryRecord, with: .defaultToSpeaker) }
+        do { try session.setCategory(.playAndRecord, mode: .default) }
         catch { print("session config failed") }
     }
     
@@ -162,7 +162,7 @@ extension RecordViewController {
             }
         }
         let session = AVAudioSession.sharedInstance()
-        do { try session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker) }
+        do { try session.setCategory(.playAndRecord, mode: .default) }
         catch { print("session config failed") }
         do {
             self.recorder = try AVAudioRecorder(url: self.directoryURL()!, settings: self.recorderSetting)
@@ -188,4 +188,9 @@ extension RecordViewController {
         let soundFileURL = documentsDirectory.appendingPathComponent(currentFileName)
         return soundFileURL
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
 }

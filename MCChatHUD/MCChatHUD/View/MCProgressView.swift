@@ -68,7 +68,7 @@ extension MCProgressView {
         progressLayer.frame = bounds
         progressLayer.fillColor = UIColor.clear.cgColor //图层背景颜色
         progressLayer.strokeColor = UIColor(red: 0.29, green: 0.29, blue: 0.29, alpha: 0.90).cgColor   //图层绘制颜色
-        progressLayer.lineCap = kCALineCapButt
+        progressLayer.lineCap = CAShapeLayerLineCap.butt
         progressLayer.lineWidth = HUDHeight
         progressLayer.path = progressPath
         progressLayer.mask = maskLayer
@@ -77,8 +77,8 @@ extension MCProgressView {
         
         animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.duration = 60 //最大录音时长
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)    //匀速前进
-        animation.fillMode = kCAFillModeForwards
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)    //匀速前进
+        animation.fillMode = CAMediaTimingFillMode.forwards
         animation.fromValue = 0.0
         animation.toValue = 1.0
         animation.autoreverses = false
